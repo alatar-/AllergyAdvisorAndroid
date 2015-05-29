@@ -1,4 +1,4 @@
-package pl.allergyfoodadvisor.activity;
+package pl.allergyfoodadvisor.activities;
 
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
-import pl.allergyfoodadvisor.fragment.NavigationDrawerFragment;
+import pl.allergyfoodadvisor.activities.fragments.NavigationDrawerFragment;
 import pl.allergyfoodadvisor.R;
 
 
@@ -61,6 +61,8 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
+                new
+
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);

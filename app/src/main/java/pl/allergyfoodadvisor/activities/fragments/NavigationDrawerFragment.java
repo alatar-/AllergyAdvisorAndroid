@@ -1,4 +1,4 @@
-package pl.allergyfoodadvisor.fragment;
+package pl.allergyfoodadvisor.activities.fragments;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
