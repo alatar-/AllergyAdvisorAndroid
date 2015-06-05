@@ -15,9 +15,19 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <dimen name="detail_backdrop_height">256dp</dimen>
-    <dimen name="card_margin">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="list_item_avatar_size">40dp</dimen>
-</resources>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="192dp"
+    android:background="?attr/colorPrimaryDark"
+    android:padding="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:orientation="vertical"
+    android:gravity="bottom">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+</LinearLayout>

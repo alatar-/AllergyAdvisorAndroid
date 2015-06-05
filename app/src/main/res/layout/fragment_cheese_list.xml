@@ -14,10 +14,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
-<resources>
-    <dimen name="detail_backdrop_height">256dp</dimen>
-    <dimen name="card_margin">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="list_item_avatar_size">40dp</dimen>
-</resources>
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
