@@ -35,8 +35,8 @@ public interface API {
     @GET("/products/{id}")
     Product getProduct(@Path("id") String id);
 
-    @GET("/products")
-    List<Product> getProducts();
+    @GET("/products?name={name}")
+    List<Product> getProducts(@Path("name") String name);
 
 //    @POST("/1.0/{lang}/workouts/start/{id}")
 //    Message<Workout> startWorkout(@Path("id") String id);
