@@ -18,7 +18,7 @@
 
     <style name="Theme.AllergyAdvisor" parent="Base.Theme.AllergyAdvisor"></style>
 
-    <style name="Base.Theme.AllergyAdvisor" parent="Base.Theme.AppCompat.Light">
+    <style name="Base.Theme.AllergyAdvisor" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#673AB7</item>
         <item name="colorPrimaryDark">#512DA8</item>
         <item name="colorAccent">#FF4081</item>

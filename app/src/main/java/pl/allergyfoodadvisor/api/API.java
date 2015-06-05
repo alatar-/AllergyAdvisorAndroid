@@ -33,7 +33,7 @@ public interface API {
 //    Message<String> updateUser(@Body Map<String, Object> map);
 //
     @GET("/products/{id}")
-    Product getProduct();
+    Product getProduct(@Path("id") String id);
 
 //    @POST("/1.0/{lang}/workouts/start/{id}")
 //    Message<Workout> startWorkout(@Path("id") String id);

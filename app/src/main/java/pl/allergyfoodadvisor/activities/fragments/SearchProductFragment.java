@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
@@ -15,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +25,8 @@ import java.util.Random;
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.activities.CheeseDetailActivity;
 import pl.allergyfoodadvisor.activities.Cheeses;
+import pl.allergyfoodadvisor.api.APIAsyncTask;
+import pl.allergyfoodadvisor.api.services.products.GetProductService;
 
 public class SearchProductFragment extends Fragment {
     private View mRootView;
@@ -119,6 +119,11 @@ public class SearchProductFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
+
+                    GetProductService getProductService = new GetProductService();
+//                    BusProvider.getInstance().getBus().register(this);
+                    new APIAsyncTask().execute(getProductService);
+
                     Intent intent = new Intent(context, CheeseDetailActivity.class);
                     intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString);
 
