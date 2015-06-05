@@ -9,14 +9,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +29,10 @@ import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.activities.CheeseDetailActivity;
 import pl.allergyfoodadvisor.activities.Cheeses;
 import pl.allergyfoodadvisor.api.APIAsyncTask;
+import pl.allergyfoodadvisor.api.services.products.GetAllProductsService;
 import pl.allergyfoodadvisor.api.services.products.GetProductService;
+import pl.allergyfoodadvisor.extras.BusProvider;
+import pl.allergyfoodadvisor.main.AllergyAdvisor;
 
 public class SearchProductFragment extends Fragment {
     private View mRootView;
@@ -48,6 +54,18 @@ public class SearchProductFragment extends Fragment {
         });
 
         return mRootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        BusProvider.getInstance().getBus().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        BusProvider.getInstance().getBus().unregister(this);
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
@@ -118,16 +136,18 @@ public class SearchProductFragment extends Fragment {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Context context = v.getContext();
+                Context context = v.getContext();
 
-                    GetProductService getProductService = new GetProductService();
-//                    BusProvider.getInstance().getBus().register(this);
-                    new APIAsyncTask().execute(getProductService);
+                GetAllProductsService productsService = new GetAllProductsService();
+                new APIAsyncTask().execute(productsService);
 
+//                Context context = getActivity().getApplicationContext();
+                if (context != null) {
                     Intent intent = new Intent(context, CheeseDetailActivity.class);
                     intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString);
 
                     context.startActivity(intent);
+                }
                 }
             });
 
@@ -141,5 +161,11 @@ public class SearchProductFragment extends Fragment {
         public int getItemCount() {
             return mValues.size();
         }
+    }
+
+    @Subscribe
+    public void onAPIResponse(GetAllProductsService service) {
+
+
     }
 }

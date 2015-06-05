@@ -6,7 +6,7 @@ import com.squareup.otto.ThreadEnforcer;
 public class BusProvider {
 
     private static BusProvider mInstance = null;
-    private Bus mBus = new Bus(ThreadEnforcer.ANY);
+    private Bus mBus = new Bus(ThreadEnforcer.MAIN);
 
     public BusProvider() {
 
