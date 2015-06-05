@@ -11,8 +11,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.Random;
-
 import pl.allergyfoodadvisor.R;
 
 public class CheeseDetailActivity extends AppCompatActivity {
@@ -55,7 +53,7 @@ public class CheeseDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.sample_actions, menu);
+        getMenuInflater().inflate(R.menu.options_menu, menu);
         return true;
     }
 }
