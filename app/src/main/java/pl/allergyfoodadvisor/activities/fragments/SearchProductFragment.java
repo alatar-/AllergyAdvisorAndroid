@@ -1,9 +1,11 @@
-package pl.allergyfoodadvisor.activities;
+package pl.allergyfoodadvisor.activities.fragments;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -22,16 +25,29 @@ import java.util.List;
 import java.util.Random;
 
 import pl.allergyfoodadvisor.R;
+import pl.allergyfoodadvisor.activities.CheeseDetailActivity;
+import pl.allergyfoodadvisor.activities.Cheeses;
 
-public class CheeseListFragment extends Fragment {
+public class SearchProductFragment extends Fragment {
+    private View mRootView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        RecyclerView rv = (RecyclerView) inflater.inflate(
-                R.layout.fragment_cheese_list, container, false);
-        setupRecyclerView(rv);
-        return rv;
+        mRootView = inflater.inflate(R.layout.fragment_search_product, container, false);
+
+        setupRecyclerView((RecyclerView) mRootView.findViewById(R.id.recyclerview));
+
+        FloatingActionButton fab = (FloatingActionButton) mRootView.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        return mRootView;
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
