@@ -18,4 +18,8 @@ public final class GetProductsService extends GetAPIInteraction {
         products = AllergyAdvisor.getAPI().getProducts(this.mSearchString);
         return true;
     }
+
+    public List<Product> getProducts() {
+        return this.products;
+    }
 }

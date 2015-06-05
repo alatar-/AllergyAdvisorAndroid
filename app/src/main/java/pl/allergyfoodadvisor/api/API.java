@@ -10,6 +10,7 @@ import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.PUT;
 import retrofit.http.Path;
+import retrofit.http.Query;
 
 /**
  * Interface for the GoAll API
@@ -35,8 +36,8 @@ public interface API {
     @GET("/products/{id}")
     Product getProduct(@Path("id") String id);
 
-    @GET("/products?name={name}")
-    List<Product> getProducts(@Path("name") String name);
+    @GET("/products")
+    List<Product> getProducts(@Query("name") String name);
 
 //    @POST("/1.0/{lang}/workouts/start/{id}")
 //    Message<Workout> startWorkout(@Path("id") String id);

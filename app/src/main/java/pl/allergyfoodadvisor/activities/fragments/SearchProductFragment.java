@@ -19,6 +19,7 @@ import java.util.Random;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.activities.Cheeses;
+import pl.allergyfoodadvisor.api.APIAsyncTask;
 import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.api.services.products.GetProductsService;
 import pl.allergyfoodadvisor.api.services.products.GetSingleProductService;
@@ -34,6 +35,7 @@ public class SearchProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_search_product, container, false);
 
+        BusProvider.getInstance().getBus().register(this);
         setupRecyclerView((RecyclerView) mRootView.findViewById(R.id.recyclerview)); //TODO: class should be already registered to bus
 
         FloatingActionButton fab = (FloatingActionButton) mRootView.findViewById(R.id.fab);
@@ -51,7 +53,7 @@ public class SearchProductFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        BusProvider.getInstance().getBus().register(this);
+//        BusProvider.getInstance().getBus().register(this);
     }
 
     @Override
@@ -65,7 +67,9 @@ public class SearchProductFragment extends Fragment {
         this.mProducts = new ArrayList<Product>();
         recyclerView.setAdapter(new RecyclerViewProductAdapter(getActivity(),
                 this.mProducts));
-        onAPIResponse((GetProductsService) null);
+
+        GetProductsService productsService = new GetProductsService("sda");
+        new APIAsyncTask().execute(productsService);
     }
 
     private List<Product> getRandomSublist(String[] array, int amount) {
@@ -81,10 +85,11 @@ public class SearchProductFragment extends Fragment {
 
     @Subscribe
     public void onAPIResponse(GetProductsService service) {
-        //
-        List<Product> prud = getRandomSublist(Cheeses.sCheeseStrings, 30);
+//        List<Product> prud = getRandomSublist(Cheeses.sCheeseStrings, 30);
         this.mProducts.clear();
-        this.mProducts.addAll(prud);
+        this.mProducts.addAll(service.getProducts());
+        ((RecyclerView) mRootView.findViewById(R.id.recyclerview))
+                .getAdapter().notifyDataSetChanged();
     }
 
     @Subscribe
