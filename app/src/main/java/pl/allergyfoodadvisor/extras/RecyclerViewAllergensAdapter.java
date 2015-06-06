@@ -19,25 +19,23 @@ import pl.allergyfoodadvisor.activities.ProductDetailsActivity;
 import pl.allergyfoodadvisor.api.pojos.Allergen;
 import pl.allergyfoodadvisor.api.pojos.Product;
 
-public class RecyclerViewProductAdapter
-        extends RecyclerView.Adapter<RecyclerViewProductAdapter.ViewHolder> {
+public class RecyclerViewAllergensAdapter
+        extends RecyclerView.Adapter<RecyclerViewAllergensAdapter.ViewHolder> {
 
     private final TypedValue mTypedValue = new TypedValue();
     private int mBackground;
-    private List<Product> mValues;
+    private List<Allergen> mValues;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public String mBoundString;
 
         public final View mView;
-        public final ImageView mImageView;
         public final TextView mTextView;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mImageView = (ImageView) view.findViewById(R.id.avatar);
-            mTextView = (TextView) view.findViewById(android.R.id.text1);
+            mTextView = (TextView) view.findViewById(R.id.allergen_textview);
         }
 
         @Override
@@ -50,7 +48,7 @@ public class RecyclerViewProductAdapter
         return mValues.get(position).name;
     }
 
-    public RecyclerViewProductAdapter(Context context, List<Product> items) {
+    public RecyclerViewAllergensAdapter(Context context, List<Allergen> items) {
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mBackground = mTypedValue.resourceId;
         mValues = items;
@@ -59,17 +57,17 @@ public class RecyclerViewProductAdapter
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.product_list_item, parent, false);
+                .inflate(R.layout.allergen_list_item, parent, false);
         view.setBackgroundResource(mBackground);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final Product product = mValues.get(position);
+        final Allergen allergen = mValues.get(position);
 
-        holder.mBoundString = product.name;
-        holder.mTextView.setText(product.name);
+        holder.mBoundString = allergen.name;
+        holder.mTextView.setText(allergen.name);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,18 +75,9 @@ public class RecyclerViewProductAdapter
                 Context context = v.getContext();
 
                 if (context != null) {
-                    Intent intent = new Intent(context, ProductDetailsActivity.class);
-                    intent.putExtra(ProductDetailsActivity.EXTRA_PRODUCT, product);
-
-                    context.startActivity(intent);
                 }
             }
         });
-
-        Glide.with(holder.mImageView.getContext())
-                .load(CommonMethods.getRandomCheeseDrawable())
-                .fitCenter()
-                .into(holder.mImageView);
     }
 
     @Override

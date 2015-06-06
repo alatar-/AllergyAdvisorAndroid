@@ -25,6 +25,7 @@ import pl.allergyfoodadvisor.api.services.products.GetProductsService;
 import pl.allergyfoodadvisor.api.services.products.GetSingleProductService;
 import pl.allergyfoodadvisor.extras.BusProvider;
 import pl.allergyfoodadvisor.extras.ProductSearchViewOnQueryTextListener;
+import pl.allergyfoodadvisor.extras.RecyclerViewAllergensAdapter;
 import pl.allergyfoodadvisor.extras.RecyclerViewProductAdapter;
 
 public class SearchProductFragment extends Fragment {
