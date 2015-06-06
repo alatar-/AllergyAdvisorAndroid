@@ -8,7 +8,7 @@ import pl.allergyfoodadvisor.api.services.products.GetProductsService;
 public class ProductSearchViewOnQueryTextListener implements SearchView.OnQueryTextListener {
     @Override
     public boolean onQueryTextSubmit(String query) {
-        return true;
+        return false;
     }
 
     @Override
