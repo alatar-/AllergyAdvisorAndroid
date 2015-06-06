@@ -1,10 +1,8 @@
 package pl.allergyfoodadvisor.extras;
 
-
 import android.preference.PreferenceManager;
 
 import pl.allergyfoodadvisor.main.AllergyAdvisor;
-
 
 public class DataManager {
     private static DataManager mInstance;

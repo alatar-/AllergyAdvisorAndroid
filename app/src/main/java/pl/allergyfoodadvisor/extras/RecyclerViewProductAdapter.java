@@ -16,7 +16,6 @@ import java.util.List;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.activities.CheeseDetailActivity;
-import pl.allergyfoodadvisor.extras.CommonMethods;
 import pl.allergyfoodadvisor.api.pojos.Product;
 
 public class RecyclerViewProductAdapter
@@ -74,10 +73,6 @@ public class RecyclerViewProductAdapter
             public void onClick(View v) {
                 Context context = v.getContext();
 
-//                GetProductsService productsService = new GetProductsService();
-//                new APIAsyncTask().execute(productsService);
-
-//                Context context = getActivity().getApplicationContext();
                 if (context != null) {
                     Intent intent = new Intent(context, CheeseDetailActivity.class);
                     intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString);

@@ -17,18 +17,18 @@ public class AllergyAdvisor extends Application {
     private static final String API_URL = "http://178.62.224.26:3531";
 
     private API mAPI = null;
-    private static AllergyAdvisor mInstance = null;
+    private static AllergyAdvisor sInstance = null;
 
     public AllergyAdvisor() {
 
     }
 
     static public API getAPI() {
-        return mInstance.mAPI;
+        return sInstance.mAPI;
     }
 
     static public AllergyAdvisor getInstance() {
-        return mInstance;
+        return sInstance;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class AllergyAdvisor extends Application {
                 .setEndpoint(API_URL)
                 .build()
                 .create(API.class);
-        mInstance = this;
+        sInstance = this;
         BusProvider.getInstance().getBus().register(this); //listen for "global" events
     }
 

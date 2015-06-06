@@ -5,15 +5,15 @@ import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.main.AllergyAdvisor;
 
 public final class GetSingleProductService extends GetAPIInteraction {
-    private Product product;
-    private String productId;
+    private Product mProduct;
+    private String mProductId;
 
     public GetSingleProductService(String id) {
-        this.productId = "5571bf896b07e160f95e015a";
+        this.mProductId = "5571bf896b07e160f95e015a";
     }
 
     public Boolean invoke() {
-        product = AllergyAdvisor.getAPI().getProduct(this.productId);
+        mProduct = AllergyAdvisor.getAPI().getProduct(this.mProductId);
         return true;
     }
 }

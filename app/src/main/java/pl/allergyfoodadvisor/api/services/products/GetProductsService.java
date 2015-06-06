@@ -7,7 +7,7 @@ import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.main.AllergyAdvisor;
 
 public final class GetProductsService extends GetAPIInteraction {
-    private List<Product> products;
+    private List<Product> mProducts;
     private String mSearchString;
 
     public GetProductsService(String name) {
@@ -15,11 +15,11 @@ public final class GetProductsService extends GetAPIInteraction {
     }
 
     public Boolean invoke() {
-        products = AllergyAdvisor.getAPI().getProducts(this.mSearchString);
+        mProducts = AllergyAdvisor.getAPI().getProducts(this.mSearchString);
         return true;
     }
 
     public List<Product> getProducts() {
-        return this.products;
+        return this.mProducts;
     }
 }

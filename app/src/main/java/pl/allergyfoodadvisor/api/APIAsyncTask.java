@@ -1,6 +1,5 @@
 package pl.allergyfoodadvisor.api;
 
-
 import android.os.AsyncTask;
 import android.widget.Toast;
 
