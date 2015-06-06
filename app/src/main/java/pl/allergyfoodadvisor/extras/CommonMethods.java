@@ -8,7 +8,9 @@ import android.util.Log;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
+import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.main.AllergyAdvisor;
 
 public class CommonMethods {
@@ -36,5 +38,21 @@ public class CommonMethods {
      */
     static public Resources getResources() {
         return AllergyAdvisor.getInstance().getApplicationContext().getResources();
+    }
+
+    public static int getRandomCheeseDrawable() {
+        switch (new Random().nextInt(5)) {
+            default:
+            case 0:
+                return R.drawable.cheese_1;
+            case 1:
+                return R.drawable.cheese_2;
+            case 2:
+                return R.drawable.cheese_3;
+            case 3:
+                return R.drawable.cheese_4;
+            case 4:
+                return R.drawable.cheese_5;
+        }
     }
 }

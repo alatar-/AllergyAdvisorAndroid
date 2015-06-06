@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,12 @@ import java.util.List;
 import java.util.Random;
 
 import pl.allergyfoodadvisor.R;
-import pl.allergyfoodadvisor.activities.Cheeses;
 import pl.allergyfoodadvisor.api.APIAsyncTask;
 import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.api.services.products.GetProductsService;
 import pl.allergyfoodadvisor.api.services.products.GetSingleProductService;
 import pl.allergyfoodadvisor.extras.BusProvider;
+import pl.allergyfoodadvisor.extras.ProductSearchViewOnQueryTextListener;
 import pl.allergyfoodadvisor.extras.RecyclerViewProductAdapter;
 
 public class SearchProductFragment extends Fragment {
@@ -35,8 +36,8 @@ public class SearchProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_search_product, container, false);
 
-        BusProvider.getInstance().getBus().register(this);
-        setupRecyclerView((RecyclerView) mRootView.findViewById(R.id.recyclerview)); //TODO: class should be already registered to bus
+        setupSearchVeiw((SearchView) mRootView.findViewById(R.id.search_view));
+        setupRecyclerView((RecyclerView) mRootView.findViewById(R.id.recyclerview));
 
         FloatingActionButton fab = (FloatingActionButton) mRootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +54,7 @@ public class SearchProductFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        BusProvider.getInstance().getBus().register(this);
+        BusProvider.getInstance().getBus().register(this);
     }
 
     @Override
@@ -62,14 +63,18 @@ public class SearchProductFragment extends Fragment {
         BusProvider.getInstance().getBus().unregister(this);
     }
 
+    private void setupSearchVeiw(SearchView searchView) {
+        searchView.setOnQueryTextListener(new ProductSearchViewOnQueryTextListener());
+    }
+
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         this.mProducts = new ArrayList<Product>();
         recyclerView.setAdapter(new RecyclerViewProductAdapter(getActivity(),
                 this.mProducts));
 
-        GetProductsService productsService = new GetProductsService("sda");
-        new APIAsyncTask().execute(productsService);
+//        GetProductsService productsService = new GetProductsService("sda");
+//        new APIAsyncTask().execute(productsService);
     }
 
     private List<Product> getRandomSublist(String[] array, int amount) {

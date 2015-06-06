@@ -16,7 +16,7 @@ import java.util.List;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.activities.CheeseDetailActivity;
-import pl.allergyfoodadvisor.activities.Cheeses;
+import pl.allergyfoodadvisor.extras.CommonMethods;
 import pl.allergyfoodadvisor.api.pojos.Product;
 
 public class RecyclerViewProductAdapter
@@ -88,7 +88,7 @@ public class RecyclerViewProductAdapter
         });
 
         Glide.with(holder.mImageView.getContext())
-                .load(Cheeses.getRandomCheeseDrawable())
+                .load(CommonMethods.getRandomCheeseDrawable())
                 .fitCenter()
                 .into(holder.mImageView);
     }
