@@ -9,9 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ import java.util.List;
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.activities.fragments.SearchProductFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private DrawerLayout mDrawerLayout;
 
@@ -51,12 +49,6 @@ public class MainActivity extends AppCompatActivity {
             ft.replace(R.id.container, fragment, "cheeseListFragment");
             ft.commit();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.options_menu, menu);
-        return true;
     }
 
     @Override

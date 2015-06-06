@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import pl.allergyfoodadvisor.R;
-import pl.allergyfoodadvisor.activities.CheeseDetailActivity;
+import pl.allergyfoodadvisor.activities.ProductDetailsActivity;
 import pl.allergyfoodadvisor.api.pojos.Product;
 
 public class RecyclerViewProductAdapter
@@ -65,8 +65,10 @@ public class RecyclerViewProductAdapter
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mBoundString = mValues.get(position).name;
-        holder.mTextView.setText(mValues.get(position).name);
+        final Product product = mValues.get(position);
+
+        holder.mBoundString = product.name;
+        holder.mTextView.setText(product.name);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +76,8 @@ public class RecyclerViewProductAdapter
                 Context context = v.getContext();
 
                 if (context != null) {
-                    Intent intent = new Intent(context, CheeseDetailActivity.class);
-                    intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString);
+                    Intent intent = new Intent(context, ProductDetailsActivity.class);
+                    intent.putExtra(ProductDetailsActivity.EXTRA_PRODUCT, product);
 
                     context.startActivity(intent);
                 }
