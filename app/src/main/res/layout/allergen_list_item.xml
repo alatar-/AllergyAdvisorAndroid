@@ -18,10 +18,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     android:gravity="center_vertical"
     android:orientation="vertical">
 
@@ -31,11 +29,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?attr/textAppearanceListItem"/>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:background="#c0c0c0"/>
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:paddingLeft="0dp"-->
+        <!--android:paddingRight="0dp"-->
+        <!--android:paddingTop="10dp"-->
+        <!--android:paddingBottom="10dp"-->
+        <!--android:background="#c0c0c0"/>-->
 
 </LinearLayout>

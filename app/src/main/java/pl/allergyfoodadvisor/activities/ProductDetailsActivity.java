@@ -13,13 +13,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
-
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.extras.CommonMethods;
 import pl.allergyfoodadvisor.extras.RecyclerViewAllergensAdapter;
-import pl.allergyfoodadvisor.extras.RecyclerViewProductAdapter;
 
 public class ProductDetailsActivity extends BaseActivity {
 
@@ -42,13 +39,36 @@ public class ProductDetailsActivity extends BaseActivity {
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(mProduct.name);
 
-        ((TextView)findViewById(R.id.product_description)).setText(mProduct.description);
-        ((TextView)findViewById(R.id.product_producer)).setText(mProduct.producer);
+        ((TextView) findViewById(R.id.product_description)).setText(mProduct.description);
+        ((TextView) findViewById(R.id.product_producer)).setText(mProduct.producer);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.allergen_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-                recyclerView.setAdapter(new RecyclerViewAllergensAdapter(this,
+        recyclerView.setAdapter(new RecyclerViewAllergensAdapter(this,
                 this.mProduct.allergens));
+//        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+//            @Override
+//            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+//                int action = e.getAction();
+//                switch (action) {
+//                    case MotionEvent.ACTION_MOVE:
+//                        rv.getParent().requestDisallowInterceptTouchEvent(true);
+//                        break;
+//                }
+//                return false;
+//            }
+//
+//            @Override
+//            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+//
+//            }
+//        });
+
 
         Log.e("product", this.mProduct.allergens.get(0).name);
 
