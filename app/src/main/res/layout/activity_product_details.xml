@@ -120,8 +120,7 @@
                 <LinearLayout
                     style="@style/Widget.CardContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -132,12 +131,212 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/allergen_recyclerview"
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"
+                        android:layout_height="100dp"
                         android:layout_marginBottom="@dimen/card_margin"
                         android:layout_marginLeft="@dimen/card_margin"
                         android:layout_marginRight="@dimen/card_margin"
-                        android:scrollbars="none" />
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+                    <Button
+                        android:id="@+id/button_more_allergens"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MORE..."
+                        android:textColor="#ff8f8f8f" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margin">
+
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="Last comments"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <!--elem-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center_horizontal">
+
+                        <View
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="2dp"
+                            android:background="#baa6a3a0" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingBottom="2dp"
+                            android:paddingTop="2dp">
+                            <!--android:background="#fff4f4f4"-->
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ludzie czego Trollujeciee ! Nutella nie ma laskowych orzechów , kazdy o ty m wie! nawet moje dziecko to wie !!" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:paddingTop="2dp">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_forum" />
+
+                                <TextView
+                                    android:id="@android:id/text1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="fill_parent"
+                                    android:paddingLeft="3dp"
+                                    android:text="Martka Koksiara" />
+                                <!--android:textAppearance="?attr/textAppearanceListItem" />-->
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--end-->
+
+                    <!--elem-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center_horizontal">
+
+                        <View
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="2dp"
+                            android:background="#baa6a3a0" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingBottom="2dp"
+                            android:paddingTop="2dp">
+                            <!--android:background="#fff4f4f4"-->
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ludzie czego Trollujeciee ! Nutella nie ma laskowych orzechów , kazdy o ty m wie! nawet moje dziecko to wie !!" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:paddingTop="2dp">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_forum" />
+
+                                <TextView
+                                    android:id="@android:id/text1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="fill_parent"
+                                    android:paddingLeft="3dp"
+                                    android:text="Martka Koksiara" />
+                                <!--android:textAppearance="?attr/textAppearanceListItem" />-->
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--end-->
+                    <!--elem-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center_horizontal">
+
+                        <View
+                            android:layout_width="5dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="2dp"
+                            android:background="#baa6a3a0" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingBottom="2dp"
+                            android:paddingTop="2dp">
+                            <!--android:background="#fff4f4f4"-->
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ludzie czego Trollujeciee ! Nutella nie ma laskowych orzechów , kazdy o ty m wie! nawet moje dziecko to wie !!" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:paddingTop="2dp">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_forum" />
+
+                                <TextView
+                                    android:id="@android:id/text1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="fill_parent"
+                                    android:paddingLeft="3dp"
+                                    android:text="Martka Koksiara" />
+                                <!--android:textAppearance="?attr/textAppearanceListItem" />-->
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--end-->
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="SEE MORE..."
+                        android:textColor="#ff8f8f8f" />
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
