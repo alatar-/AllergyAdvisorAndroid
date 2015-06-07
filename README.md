@@ -11,3 +11,10 @@ Communication with external service (node.js based) is done with [Retrofit libra
 ## UI
 
 Material Design UI is based om new [Android Design Library](http://android-developers.blogspot.co.uk/2015/05/android-design-support-library.html), particularly on the [cheesesquare example](https://github.com/chrisbanes/cheesesquare). 
+
+### Icons
+
+Some of the icons were downloaded from:
+
+- http://www.icons4android.com/iconset/25
+- https://www.google.com/design/icons/
