@@ -120,13 +120,66 @@
                 <LinearLayout
                     style="@style/Widget.CardContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Allergens"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <!--&lt;!&ndash;elem&ndash;&gt;-->
+                    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/allergen_textview"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_weight="50"-->
+                            <!--android:background="#baeae7e4"-->
+                            <!--android:gravity="right"-->
+                            <!--android:text="gluten"-->
+                            <!--android:textAppearance="?attr/textAppearanceListItem" />-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_weight="10"-->
+                            <!--android:text="5"-->
+                            <!--android:textAppearance="?attr/textAppearanceListItem" />-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_weight="10"-->
+                            <!--android:src="@drawable/ic_contains" />-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_weight="10"-->
+                            <!--android:src="@drawable/ic_not_contain" />-->
+
+                        <!--&lt;!&ndash;android:adjustViewBounds="true"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:maxHeight="5dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:maxWidth="5dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:scaleType="fitXY"&ndash;&gt;-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_weight="10"-->
+                            <!--android:text="221"-->
+                            <!--android:textAppearance="?attr/textAppearanceListItem" />-->
+
+                    <!--</LinearLayout>-->
+                    <!--end elem-->
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/allergen_recyclerview"
