@@ -44,24 +44,43 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+            android:layout_height="fill_parent"
+            android:layout_marginTop="60dp">
 
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/notification_large_icon_height"
+                android:src="@drawable/ic_action_new_picture"
+                android:scaleType="fitCenter"/>
             <EditText
+                android:id="@+id/text1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="Product name"/>
+                android:hint="Product name"
+                android:layout_below="@+id/imageView1"/>
             <EditText
+                android:id="@+id/text2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="Proucer"/>
+                android:hint="Producer"
+                android:layout_below="@+id/text1"/>
+            <EditText
+                android:id="@+id/text3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:layout_below="@+id/text2"/>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_action_save"
+                android:onClick="saveNewProduct"/>
         </RelativeLayout>
 
     </android.support.design.widget.CoordinatorLayout>
