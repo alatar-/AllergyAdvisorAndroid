@@ -28,5 +28,6 @@
     <string name="title_activity_allergens">AllergensActivity</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_add_new_product">AddNewProductActivity</string>
 
 </resources>

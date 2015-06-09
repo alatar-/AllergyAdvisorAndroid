@@ -21,6 +21,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ProductDetailsActivity" />
+        <activity
+            android:name=".activities.AddNewProductActivity"
+            android:label="Add new product" >
+        </activity>
     </application>
 
 </manifest>
