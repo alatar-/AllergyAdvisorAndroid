@@ -21,6 +21,7 @@ import java.util.List;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.activities.fragments.HistoryFragment;
+import pl.allergyfoodadvisor.activities.fragments.MyAllergensFragment;
 import pl.allergyfoodadvisor.activities.fragments.SearchProductFragment;
 
 public class MainActivity extends BaseActivity implements  NavigationView.OnNavigationItemSelectedListener {
@@ -92,7 +93,7 @@ public class MainActivity extends BaseActivity implements  NavigationView.OnNavi
 
                 switch (menuItem.getItemId()) {
                     case R.id.nav_allergens:
-                        newFragment = new HistoryFragment();
+                        newFragment = new MyAllergensFragment();
                         break;
                     case R.id.nav_history:
                         newFragment = new HistoryFragment();
@@ -103,7 +104,6 @@ public class MainActivity extends BaseActivity implements  NavigationView.OnNavi
                         findViewById(R.id.fab).setVisibility(View.VISIBLE);
                 }
 
-                Log.d("ASdf", "ASDF");
                 fragmentTransaction.replace(R.id.container, newFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

@@ -14,7 +14,7 @@ import retrofit.RetrofitError;
 import retrofit.client.OkClient;
 
 public class AllergyAdvisor extends Application {
-    private static final String API_URL = "http://178.62.224.26:3531";
+    private static final String API_URL = "http://178.62.224.26:80";
 
     private API mAPI = null;
     private static AllergyAdvisor sInstance = null;
