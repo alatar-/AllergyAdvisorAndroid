@@ -2,6 +2,7 @@ package pl.allergyfoodadvisor.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +12,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -18,11 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.allergyfoodadvisor.R;
+import pl.allergyfoodadvisor.activities.fragments.HistoryFragment;
 import pl.allergyfoodadvisor.activities.fragments.SearchProductFragment;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements  NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout mDrawerLayout;
+
+    private static final long DRAWER_CLOSE_DELAY_MS = 250; // http://blog.xebia.com/2015/06/09/android-design-support-navigationview/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,7 @@ public class MainActivity extends BaseActivity {
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
-            setupDrawerContent(navigationView);
+            navigationView.setNavigationItemSelectedListener(this);
         }
 
         FragmentManager fm = getSupportFragmentManager();
@@ -59,10 +64,6 @@ public class MainActivity extends BaseActivity {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
-            case R.id.nav_allergens:
-                Intent intent = new Intent(this, MyAllergensActivity.class);
-                this.startActivity(intent);
-                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -70,16 +71,42 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        menuItem.setChecked(true);
-                        mDrawerLayout.closeDrawers();
-                        return true;
-                    }
-                });
+    @Override
+    public boolean onNavigationItemSelected(final MenuItem menuItem) {
+        menuItem.setChecked(true);
+        mDrawerLayout.closeDrawers();
+
+        // allow some time after closing the drawer before performing real navigation
+        // so the user can see what is happening
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment newFragment;
+
+                switch (menuItem.getItemId()) {
+                    case R.id.nav_allergens:
+                        newFragment = new HistoryFragment();
+                        break;
+                    case R.id.nav_history:
+                        newFragment = new HistoryFragment();
+                        break;
+                    case R.id.nav_home:
+                    default:
+                        newFragment = new SearchProductFragment();
+                }
+
+                Log.d("ASdf", "ASDF");
+                fragmentTransaction.replace(R.id.container, newFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        }, DRAWER_CLOSE_DELAY_MS);
+
+        return true;
     }
 
     static class Adapter extends FragmentPagerAdapter {
