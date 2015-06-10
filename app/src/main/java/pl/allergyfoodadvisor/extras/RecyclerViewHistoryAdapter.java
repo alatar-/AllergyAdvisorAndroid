@@ -3,7 +3,6 @@ package pl.allergyfoodadvisor.extras;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +16,10 @@ import java.util.List;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.activities.ProductDetailsActivity;
-import pl.allergyfoodadvisor.api.pojos.Allergen;
 import pl.allergyfoodadvisor.api.pojos.Product;
 
-public class RecyclerViewProductAdapter
-        extends RecyclerView.Adapter<RecyclerViewProductAdapter.ViewHolder> {
+public class RecyclerViewHistoryAdapter
+        extends RecyclerView.Adapter<RecyclerViewHistoryAdapter.ViewHolder> {
 
     private final TypedValue mTypedValue = new TypedValue();
     private int mBackground;
@@ -51,7 +49,7 @@ public class RecyclerViewProductAdapter
         return mValues.get(position).name;
     }
 
-    public RecyclerViewProductAdapter(Context context, List<Product> items) {
+    public RecyclerViewHistoryAdapter(Context context, List<Product> items) {
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mBackground = mTypedValue.resourceId;
         mValues = items;
@@ -75,17 +73,14 @@ public class RecyclerViewProductAdapter
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = v.getContext();
-
-                if (context != null) {
-                    Log.d("y", product._id + "|" + product.name);
-                    DataManager.getInstance().saveToHistory(product._id + "|" + product.name);
-
-                    Intent intent = new Intent(context, ProductDetailsActivity.class);
-                    intent.putExtra(ProductDetailsActivity.EXTRA_PRODUCT, product);
-
-                    context.startActivity(intent);
-                }
+//                Context context = v.getContext();
+//
+//                if (context != null) {
+//                    Intent intent = new Intent(context, ProductDetailsActivity.class);
+//                    intent.putExtra(ProductDetailsActivity.EXTRA_PRODUCT, product);
+//
+//                    context.startActivity(intent);
+//                }
             }
         });
 

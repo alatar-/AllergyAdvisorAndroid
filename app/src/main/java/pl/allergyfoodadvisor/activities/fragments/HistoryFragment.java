@@ -1,6 +1,7 @@
 package pl.allergyfoodadvisor.activities.fragments;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,19 +25,27 @@ import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.api.services.products.GetProductsService;
 import pl.allergyfoodadvisor.api.services.products.GetSingleProductService;
 import pl.allergyfoodadvisor.extras.BusProvider;
+import pl.allergyfoodadvisor.extras.DataManager;
 import pl.allergyfoodadvisor.extras.ProductSearchViewOnQueryTextListener;
+import pl.allergyfoodadvisor.extras.RecyclerViewHistoryAdapter;
 import pl.allergyfoodadvisor.extras.RecyclerViewProductAdapter;
 
 public class HistoryFragment extends Fragment {
     private View mRootView;
     private List<Product> mProducts;
+    private RecyclerView mRecyclerView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_history, container, false);
 
-        setupRecyclerView((RecyclerView) mRootView.findViewById(R.id.recyclerview));
+        mProducts = new ArrayList<Product>();
+
+        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview2);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
+        mRecyclerView.setAdapter(new RecyclerViewHistoryAdapter(getActivity(),
+                this.mProducts));
 
         return mRootView;
     }
@@ -43,6 +53,16 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        List<String> products = DataManager.getInstance().getHistory();
+        for (String product: products) {
+            Product x = new Product();
+            x._id = product.split("\\|")[0];
+            x.name = product.split("\\|")[1];
+
+            mProducts.add(0, x);
+            mRecyclerView.getAdapter().notifyItemInserted(0);
+        }
         BusProvider.getInstance().getBus().register(this);
     }
 
@@ -50,25 +70,6 @@ public class HistoryFragment extends Fragment {
     public void onPause() {
         super.onPause();
         BusProvider.getInstance().getBus().unregister(this);
-    }
-
-    private void setupRecyclerView(RecyclerView recyclerView) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-        this.mProducts = new ArrayList<Product>();
-        recyclerView.setAdapter(new RecyclerViewProductAdapter(getActivity(),
-                this.mProducts));
-
-//        GetProductsService productsService = new GetProductsService("sda");
-//        new APIAsyncTask().execute(productsService);
-    }
-
-    @Subscribe
-    public void onAPIResponse(GetProductsService service) {
-//        List<Product> prud = getRandomSublist(Cheeses.sCheeseStrings, 30);
-        this.mProducts.clear();
-        this.mProducts.addAll(service.getProducts());
-        ((RecyclerView) mRootView.findViewById(R.id.recyclerview))
-                .getAdapter().notifyDataSetChanged();
     }
 
     @Subscribe
