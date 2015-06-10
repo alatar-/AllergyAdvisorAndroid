@@ -58,12 +58,16 @@ public class MainActivity extends BaseActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
+                break;
             case R.id.nav_allergens:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
+                Intent intent = new Intent(this, MyAllergensActivity.class);
+                this.startActivity(intent);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+
+        return true;
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -110,5 +114,10 @@ public class MainActivity extends BaseActivity {
     public void addNewProduct(View view) {
         Intent intent = new Intent(this, AddNewProductActivity.class);
         startActivity(intent);
+    }
+
+    public void navAllergensSelected(){
+        Intent intent = new Intent(this, MyAllergensActivity.class);
+        this.startActivity(intent);
     }
 }
