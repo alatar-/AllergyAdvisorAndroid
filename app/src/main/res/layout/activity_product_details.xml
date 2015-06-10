@@ -269,7 +269,7 @@
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_forum" />
+                                    android:src="@drawable/ic_comment_black" />
 
                                 <TextView
                                     android:id="@android:id/text1"
@@ -324,7 +324,7 @@
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_forum" />
+                                    android:src="@drawable/ic_comment_black" />
 
                                 <TextView
                                     android:id="@android:id/text1"
@@ -378,7 +378,7 @@
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/ic_forum" />
+                                    android:src="@drawable/ic_comment_black" />
 
                                 <TextView
                                     android:id="@android:id/text1"
