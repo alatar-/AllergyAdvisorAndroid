@@ -41,7 +41,7 @@ android:orientation="horizontal">
 
         <TextView
             android:id="@+id/allergen_textview_contains"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="25dp"
             android:text="5"
             android:layout_toRightOf="@+id/imageButton1"
@@ -65,7 +65,7 @@ android:orientation="horizontal">
 
         <TextView
             android:id="@+id/allergen_textview_not_contains"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="25dp"
             android:text="9.9k"
             android:layout_toRightOf="@+id/imageButton2"
