@@ -47,6 +47,7 @@ public class MainActivity extends BaseActivity implements  NavigationView.OnNavi
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
+        onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_home));
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentByTag("cheeseListFragment");
@@ -56,6 +57,8 @@ public class MainActivity extends BaseActivity implements  NavigationView.OnNavi
             ft.replace(R.id.container, fragment, "cheeseListFragment");
             ft.commit();
         }
+
+
     }
 
     @Override
@@ -85,6 +88,7 @@ public class MainActivity extends BaseActivity implements  NavigationView.OnNavi
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 Fragment newFragment;
+                findViewById(R.id.fab).setVisibility(View.INVISIBLE);
 
                 switch (menuItem.getItemId()) {
                     case R.id.nav_allergens:
@@ -96,6 +100,7 @@ public class MainActivity extends BaseActivity implements  NavigationView.OnNavi
                     case R.id.nav_home:
                     default:
                         newFragment = new SearchProductFragment();
+                        findViewById(R.id.fab).setVisibility(View.VISIBLE);
                 }
 
                 Log.d("ASdf", "ASDF");

@@ -3,11 +3,14 @@ package pl.allergyfoodadvisor.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,31 +49,16 @@ public class ProductDetailsActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         recyclerView.setAdapter(new RecyclerViewAllergensAdapter(this,
                 this.mProduct.allergens));
-//        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-//            @Override
-//            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-//                int action = e.getAction();
-//                switch (action) {
-//                    case MotionEvent.ACTION_MOVE:
-//                        rv.getParent().requestDisallowInterceptTouchEvent(true);
-//                        break;
-//                }
-//                return false;
-//            }
-//
-//            @Override
-//            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-//
-//            }
-//
-//            @Override
-//            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-//
-//            }
-//        });
 
-
-        Log.e("product", this.mProduct.allergens.get(0).name);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.edit);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Edition is not yet supported, sorry.", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+        Log.d("product", this.mProduct.allergens.get(0).name);
 
         loadBackdrop();
     }

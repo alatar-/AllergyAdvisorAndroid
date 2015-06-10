@@ -37,17 +37,8 @@ public class SearchProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_search_product, container, false);
 
-        setupSearchVeiw((SearchView) mRootView.findViewById(R.id.search_view));
         setupRecyclerView((RecyclerView) mRootView.findViewById(R.id.recyclerview));
-
-        FloatingActionButton fab = (FloatingActionButton) mRootView.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        setupSearchVeiw((SearchView) mRootView.findViewById(R.id.search_view));
 
         return mRootView;
     }
@@ -65,7 +56,9 @@ public class SearchProductFragment extends Fragment {
     }
 
     private void setupSearchVeiw(SearchView searchView) {
-        searchView.setOnQueryTextListener(new ProductSearchViewOnQueryTextListener());
+        ProductSearchViewOnQueryTextListener listener = new ProductSearchViewOnQueryTextListener();
+        searchView.setOnQueryTextListener(listener);
+        listener.onQueryTextChange(".");
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {

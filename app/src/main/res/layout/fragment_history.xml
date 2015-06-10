@@ -19,9 +19,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="30dp"
         android:text="Search history:"
-        android:textStyle="bold"
-        android:textSize="@dimen/abc_text_size_button_material"
-        android:textAppearance="?attr/textAllCaps"/>
+        android:textSize="30sp"
+        />
 
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/recyclerview"
