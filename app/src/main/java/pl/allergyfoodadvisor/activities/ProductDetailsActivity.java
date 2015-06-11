@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.extras.CommonMethods;
+import pl.allergyfoodadvisor.extras.MyLinearLayoutManager;
 import pl.allergyfoodadvisor.extras.RecyclerViewAllergensAdapter;
 
 public class ProductDetailsActivity extends BaseActivity {
@@ -46,7 +47,7 @@ public class ProductDetailsActivity extends BaseActivity {
         ((TextView) findViewById(R.id.product_producer)).setText(mProduct.producer);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.allergen_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+        recyclerView.setLayoutManager(new MyLinearLayoutManager(recyclerView.getContext(), 1, false));
         recyclerView.setAdapter(new RecyclerViewAllergensAdapter(this,
                 this.mProduct.allergens));
 

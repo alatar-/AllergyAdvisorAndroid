@@ -12,7 +12,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -89,7 +88,7 @@ public class MainActivity extends BaseActivity implements  NavigationView.OnNavi
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 Fragment newFragment;
-                findViewById(R.id.fab).setVisibility(View.INVISIBLE);
+                findViewById(R.id.plus_btn).setVisibility(View.INVISIBLE);
 
                 switch (menuItem.getItemId()) {
                     case R.id.nav_allergens:
@@ -101,7 +100,7 @@ public class MainActivity extends BaseActivity implements  NavigationView.OnNavi
                     case R.id.nav_home:
                     default:
                         newFragment = new SearchProductFragment();
-                        findViewById(R.id.fab).setVisibility(View.VISIBLE);
+                        findViewById(R.id.plus_btn).setVisibility(View.VISIBLE);
                 }
 
                 fragmentTransaction.replace(R.id.container, newFragment);
@@ -146,10 +145,5 @@ public class MainActivity extends BaseActivity implements  NavigationView.OnNavi
     public void addNewProduct(View view) {
         Intent intent = new Intent(this, AddNewProductActivity.class);
         startActivity(intent);
-    }
-
-    public void navAllergensSelected(){
-        Intent intent = new Intent(this, MyAllergensActivity.class);
-        this.startActivity(intent);
     }
 }
