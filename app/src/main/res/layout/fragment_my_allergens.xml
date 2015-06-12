@@ -14,6 +14,19 @@
         <requestFocus />
     </View>
 
+    <android.support.v7.widget.SearchView
+        android:id="@+id/search_view"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:queryHint="search for allergens"
+        app:iconifiedByDefault="false"
+        android:inputType="textFilter"
+        android:theme="@style/SerachViewColorScheme" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,5 +35,10 @@
         android:layout_marginBottom="5dp"
         android:textSize="20sp"
         />
+
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recyclerview_alrg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -25,10 +25,6 @@
             android:name=".activities.AddNewProductActivity"
             android:label="Add new product" >
         </activity>
-        <activity
-            android:name=".activities.MyAllergensActivity"
-            android:label="My allergens" >
-        </activity>
     </application>
 
 </manifest>
