@@ -2,6 +2,7 @@ package pl.allergyfoodadvisor.api;
 
 import java.util.List;
 
+import pl.allergyfoodadvisor.api.pojos.Allergen;
 import pl.allergyfoodadvisor.api.pojos.Product;
 import retrofit.http.GET;
 import retrofit.http.Path;
@@ -16,4 +17,10 @@ public interface API {
 
     @GET("/products")
     List<Product> getProducts(@Query("name") String name);
+
+    @GET("/allergens/{id}")
+    Allergen getAllergen(@Path("id") String id);
+
+    @GET("/allergens")
+    List<Allergen> getAllergens(@Query("name") String name);
 }

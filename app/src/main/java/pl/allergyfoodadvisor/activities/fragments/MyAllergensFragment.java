@@ -14,11 +14,15 @@ import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.api.pojos.Allergen;
 import pl.allergyfoodadvisor.api.pojos.Product;
+import pl.allergyfoodadvisor.api.services.allergens.GetAllergensService;
+import pl.allergyfoodadvisor.api.services.products.GetProductsService;
 import pl.allergyfoodadvisor.api.services.products.GetSingleProductService;
+import pl.allergyfoodadvisor.extras.AllergenSearchViewOnQueryTextListener;
 import pl.allergyfoodadvisor.extras.BusProvider;
 import pl.allergyfoodadvisor.extras.DataManager;
 import pl.allergyfoodadvisor.extras.ProductSearchViewOnQueryTextListener;
@@ -43,6 +47,10 @@ public class MyAllergensFragment extends Fragment {
         mRecyclerView.setAdapter(new RecyclerViewAllergensAdapter(getActivity(),
                 this.mMyAllergens));
 
+        AllergenSearchViewOnQueryTextListener listener = new AllergenSearchViewOnQueryTextListener();
+        ((SearchView) mRootView.findViewById(R.id.search_view_alrg)).setOnQueryTextListener(listener);
+        listener.onQueryTextChange(".");
+
         return mRootView;
     }
 
@@ -56,5 +64,25 @@ public class MyAllergensFragment extends Fragment {
     public void onPause() {
         super.onPause();
         BusProvider.getInstance().getBus().unregister(this);
+    }
+
+    private List<Allergen> getRandomSublist(String[] array, int amount) {
+        ArrayList<Allergen> list = new ArrayList<>(amount);
+        Random random = new Random();
+        while (list.size() < amount) {
+            Allergen x = new Allergen();
+            x.name = array[random.nextInt(array.length)];
+            list.add(x);
+        }
+        return list;
+    }
+
+    @Subscribe
+    public void onAPIResponse(GetAllergensService service) {
+//        List<Product> prud = getRandomSublist(Cheeses.sCheeseStrings, 30);
+        this.mMyAllergens.clear();
+        this.mMyAllergens.addAll(service.getAllergens());
+        ((RecyclerView) mRootView.findViewById(R.id.recyclerview_alrg))
+                .getAdapter().notifyDataSetChanged();
     }
 }
