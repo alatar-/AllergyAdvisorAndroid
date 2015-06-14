@@ -1,26 +1,20 @@
-package pl.allergyfoodadvisor.extras;
+package pl.allergyfoodadvisor.extras.recyclerviews;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 import pl.allergyfoodadvisor.R;
-import pl.allergyfoodadvisor.activities.ProductDetailsActivity;
 import pl.allergyfoodadvisor.api.pojos.Allergen;
-import pl.allergyfoodadvisor.api.pojos.Product;
 
-public class RecyclerViewAllergensAdapter
-        extends RecyclerView.Adapter<RecyclerViewAllergensAdapter.ViewHolder> {
+public class RecyclerViewMyAllergenAdapter
+        extends RecyclerView.Adapter<RecyclerViewMyAllergenAdapter.ViewHolder>{
 
     private final TypedValue mTypedValue = new TypedValue();
     private int mBackground;
@@ -35,7 +29,7 @@ public class RecyclerViewAllergensAdapter
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mTextView = (TextView) view.findViewById(R.id.allergen_textview);
+            mTextView = (TextView) view.findViewById(R.id.my_allergen_textview);
         }
 
         @Override
@@ -48,7 +42,7 @@ public class RecyclerViewAllergensAdapter
         return mValues.get(position).name;
     }
 
-    public RecyclerViewAllergensAdapter(Context context, List<Allergen> items) {
+    public RecyclerViewMyAllergenAdapter(Context context, List<Allergen> items) {
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mBackground = mTypedValue.resourceId;
         mValues = items;
@@ -57,7 +51,7 @@ public class RecyclerViewAllergensAdapter
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.allergen_list_item, parent, false);
+                .inflate(R.layout.my_allergen_list_item, parent, false);
         view.setBackgroundResource(mBackground);
         return new ViewHolder(view);
     }

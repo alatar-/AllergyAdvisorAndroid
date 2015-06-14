@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,7 +19,7 @@ import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.extras.CommonMethods;
 import pl.allergyfoodadvisor.extras.MyLinearLayoutManager;
-import pl.allergyfoodadvisor.extras.RecyclerViewAllergensAdapter;
+import pl.allergyfoodadvisor.extras.recyclerviews.RecyclerViewAllergenAdapter;
 
 public class ProductDetailsActivity extends BaseActivity {
 
@@ -48,7 +47,7 @@ public class ProductDetailsActivity extends BaseActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.allergen_recyclerview);
         recyclerView.setLayoutManager(new MyLinearLayoutManager(recyclerView.getContext(), 1, false));
-        recyclerView.setAdapter(new RecyclerViewAllergensAdapter(this,
+        recyclerView.setAdapter(new RecyclerViewAllergenAdapter(this,
                 this.mProduct.allergens));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.edit);

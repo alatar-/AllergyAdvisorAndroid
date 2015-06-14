@@ -26,7 +26,8 @@ android:orientation="horizontal">
     android:layout_height="fill_parent"
     android:layout_weight="6"
     android:gravity="center_vertical"
-    android:textAppearance="?attr/textAppearanceListItem" />
+    android:textAppearance="?attr/textAppearanceListItem"
+    android:textSize="15sp"/>
 
     <RelativeLayout
         android:layout_width="0dp"

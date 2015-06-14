@@ -1,12 +1,11 @@
-package pl.allergyfoodadvisor.extras;
+package pl.allergyfoodadvisor.extras.searchviews;
 
 import android.support.v7.widget.SearchView;
 
 import pl.allergyfoodadvisor.api.APIAsyncTask;
-import pl.allergyfoodadvisor.api.services.allergens.GetAllergensService;
 import pl.allergyfoodadvisor.api.services.products.GetProductsService;
 
-public class AllergenSearchViewOnQueryTextListener implements SearchView.OnQueryTextListener {
+public class ProductSearchViewOnQueryTextListener implements SearchView.OnQueryTextListener {
     @Override
     public boolean onQueryTextSubmit(String query) {
         return false;
@@ -15,7 +14,7 @@ public class AllergenSearchViewOnQueryTextListener implements SearchView.OnQuery
     @Override
     public boolean onQueryTextChange(String newText) {
         if (newText.length() > 0) {
-            GetAllergensService service = new GetAllergensService(newText);
+            GetProductsService service = new GetProductsService(newText);
             (new APIAsyncTask()).execute(service);
         }
         return true;

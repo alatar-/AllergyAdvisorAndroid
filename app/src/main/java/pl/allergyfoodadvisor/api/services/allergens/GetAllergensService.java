@@ -4,7 +4,6 @@ import java.util.List;
 
 import pl.allergyfoodadvisor.api.interactions.GetAPIInteraction;
 import pl.allergyfoodadvisor.api.pojos.Allergen;
-import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.main.AllergyAdvisor;
 
 public class GetAllergensService extends GetAPIInteraction {

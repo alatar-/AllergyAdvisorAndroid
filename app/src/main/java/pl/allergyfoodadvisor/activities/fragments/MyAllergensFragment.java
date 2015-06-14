@@ -18,17 +18,10 @@ import java.util.Random;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.api.pojos.Allergen;
-import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.api.services.allergens.GetAllergensService;
-import pl.allergyfoodadvisor.api.services.products.GetProductsService;
-import pl.allergyfoodadvisor.api.services.products.GetSingleProductService;
-import pl.allergyfoodadvisor.extras.AllergenSearchViewOnQueryTextListener;
+import pl.allergyfoodadvisor.extras.recyclerviews.RecyclerViewMyAllergenAdapter;
+import pl.allergyfoodadvisor.extras.searchviews.AllergenSearchViewOnQueryTextListener;
 import pl.allergyfoodadvisor.extras.BusProvider;
-import pl.allergyfoodadvisor.extras.DataManager;
-import pl.allergyfoodadvisor.extras.ProductSearchViewOnQueryTextListener;
-import pl.allergyfoodadvisor.extras.RecyclerViewAllergensAdapter;
-import pl.allergyfoodadvisor.extras.RecyclerViewHistoryAdapter;
-import pl.allergyfoodadvisor.extras.RecyclerViewProductAdapter;
 
 public class MyAllergensFragment extends Fragment {
     private View mRootView;
@@ -44,7 +37,7 @@ public class MyAllergensFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview_alrg);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
-        mRecyclerView.setAdapter(new RecyclerViewAllergensAdapter(getActivity(),
+        mRecyclerView.setAdapter(new RecyclerViewMyAllergenAdapter(getActivity(),
                 this.mMyAllergens));
 
         AllergenSearchViewOnQueryTextListener listener = new AllergenSearchViewOnQueryTextListener();

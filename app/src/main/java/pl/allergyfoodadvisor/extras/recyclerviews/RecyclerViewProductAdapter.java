@@ -1,4 +1,4 @@
-package pl.allergyfoodadvisor.extras;
+package pl.allergyfoodadvisor.extras.recyclerviews;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +17,9 @@ import java.util.List;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.activities.ProductDetailsActivity;
-import pl.allergyfoodadvisor.api.pojos.Allergen;
 import pl.allergyfoodadvisor.api.pojos.Product;
+import pl.allergyfoodadvisor.extras.CommonMethods;
+import pl.allergyfoodadvisor.extras.DataManager;
 
 public class RecyclerViewProductAdapter
         extends RecyclerView.Adapter<RecyclerViewProductAdapter.ViewHolder> {

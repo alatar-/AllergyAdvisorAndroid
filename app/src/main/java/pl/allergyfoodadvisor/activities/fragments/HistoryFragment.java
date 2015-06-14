@@ -1,15 +1,10 @@
 package pl.allergyfoodadvisor.activities.fragments;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +13,13 @@ import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.api.pojos.Product;
-import pl.allergyfoodadvisor.api.services.products.GetProductsService;
 import pl.allergyfoodadvisor.api.services.products.GetSingleProductService;
 import pl.allergyfoodadvisor.extras.BusProvider;
 import pl.allergyfoodadvisor.extras.DataManager;
-import pl.allergyfoodadvisor.extras.ProductSearchViewOnQueryTextListener;
-import pl.allergyfoodadvisor.extras.RecyclerViewHistoryAdapter;
-import pl.allergyfoodadvisor.extras.RecyclerViewProductAdapter;
+import pl.allergyfoodadvisor.extras.recyclerviews.RecyclerViewHistoryAdapter;
 
 public class HistoryFragment extends Fragment {
     private View mRootView;
