@@ -37,7 +37,8 @@ android:orientation="horizontal">
             android:id="@+id/imageButton1"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:src="@drawable/ic_contains" />
+            android:src="@drawable/ic_mood_bad_black_18dp"
+            android:tint="@color/red"/>
 
         <TextView
             android:id="@+id/allergen_textview_contains"
@@ -61,7 +62,8 @@ android:orientation="horizontal">
             android:id="@+id/imageButton2"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:src="@drawable/ic_not_contain" />
+            android:src="@drawable/ic_mood_black_24dp"
+            android:tint="@color/darkgreen"/>
 
         <TextView
             android:id="@+id/allergen_textview_not_contains"

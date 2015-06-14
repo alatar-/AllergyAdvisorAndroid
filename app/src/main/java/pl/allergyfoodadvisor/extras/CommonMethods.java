@@ -41,7 +41,7 @@ public class CommonMethods {
     }
 
     public static int getRandomCheeseDrawable() {
-        switch (new Random().nextInt(5)) {
+        switch (new Random().nextInt(6)) {
             default:
             case 0:
                 return R.drawable.cheese_1;
@@ -53,6 +53,8 @@ public class CommonMethods {
                 return R.drawable.cheese_4;
             case 4:
                 return R.drawable.cheese_5;
+            case 5:
+                return R.drawable.cheese_6;
         }
     }
 }
