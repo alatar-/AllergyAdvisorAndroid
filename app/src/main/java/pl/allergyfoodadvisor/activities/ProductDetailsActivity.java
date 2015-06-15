@@ -60,7 +60,7 @@ public class ProductDetailsActivity extends BaseActivity {
         });
         Log.d("product", this.mProduct.allergens.get(0).name);
 
-        loadBackdrop();
+        loadBackdrop(mProduct.name);
     }
 
     @Override
@@ -73,8 +73,8 @@ public class ProductDetailsActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void loadBackdrop() {
+    private void loadBackdrop(String name) {
         final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-        Glide.with(this).load(CommonMethods.getRandomCheeseDrawable()).centerCrop().into(imageView);
+        Glide.with(this).load(CommonMethods.getDrawable(name)).centerCrop().into(imageView);
     }
 }

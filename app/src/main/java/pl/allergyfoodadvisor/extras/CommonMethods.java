@@ -4,10 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 import pl.allergyfoodadvisor.R;
@@ -40,21 +37,14 @@ public class CommonMethods {
         return AllergyAdvisor.getInstance().getApplicationContext().getResources();
     }
 
-    public static int getRandomCheeseDrawable() {
-        switch (new Random().nextInt(6)) {
+    public static int getDrawable(String name) {
+        switch (name) {
+            case "Nutella":
+                return R.drawable.nutella;
+            case "Snickers":
+                return R.drawable.snickers;
             default:
-            case 0:
-                return R.drawable.cheese_1;
-            case 1:
-                return R.drawable.cheese_2;
-            case 2:
-                return R.drawable.cheese_3;
-            case 3:
-                return R.drawable.cheese_4;
-            case 4:
-                return R.drawable.cheese_5;
-            case 5:
-                return R.drawable.cheese_6;
+                return R.drawable.laciate;
         }
     }
 }

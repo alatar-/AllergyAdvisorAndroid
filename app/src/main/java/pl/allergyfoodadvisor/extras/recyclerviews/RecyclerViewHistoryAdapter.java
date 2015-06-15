@@ -84,7 +84,7 @@ public class RecyclerViewHistoryAdapter
         });
 
         Glide.with(holder.mImageView.getContext())
-                .load(CommonMethods.getRandomCheeseDrawable())
+                .load(CommonMethods.getDrawable(product.name))
                 .fitCenter()
                 .into(holder.mImageView);
     }

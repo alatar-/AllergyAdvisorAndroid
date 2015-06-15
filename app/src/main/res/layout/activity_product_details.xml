@@ -252,7 +252,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="ludzie czego Trollujeciee ! Nutella nie ma laskowych orzechów , kazdy o ty m wie! nawet moje dziecko to wie !!" />
+                                android:text="kocham nutellę ;> orzechy czy nie, będę go zjadł!" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -270,7 +270,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="fill_parent"
                                     android:paddingLeft="3dp"
-                                    android:text="Martka Koksiara" />
+                                    android:text="myszka" />
                                 <!--android:textAppearance="?attr/textAppearanceListItem" />-->
 
                             </LinearLayout>
