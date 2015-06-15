@@ -306,7 +306,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="ludzie czego Trollujeciee ! Nutella nie ma laskowych orzechów , kazdy o ty m wie! nawet moje dziecko to wie !!" />
+                                android:text="Proszę nie patrzeć na powyższy komentarz. Oczywiście, że nutella ma orzechy laskowe !111" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -324,7 +324,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="fill_parent"
                                     android:paddingLeft="3dp"
-                                    android:text="Martka Koksiara" />
+                                    android:text="Maria Supermocna" />
                                 <!--android:textAppearance="?attr/textAppearanceListItem" />-->
 
                             </LinearLayout>
