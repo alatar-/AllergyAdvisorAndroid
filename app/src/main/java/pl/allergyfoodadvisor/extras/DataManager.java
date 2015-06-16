@@ -68,7 +68,21 @@ public class DataManager {
     }
 
     public void removeFromMyAllergens(String value){
+        Gson gson = new GsonBuilder().create();
+        List<String> myAllergens;
 
+        if (getManager().getString(MY_ALLERGENS, null) == null) {
+            return;
+        } else {
+            myAllergens = gson.fromJson(getManager().getString(MY_ALLERGENS, null), List.class);
+        }
+
+        if (myAllergens.contains(value)) {
+            myAllergens.remove(value); // we want to add it at the end
+        }
+
+        getManager().edit().putString(MY_ALLERGENS, gson.toJson(myAllergens)).commit();
+        return;
     }
 
     public List<String> getHistory() {

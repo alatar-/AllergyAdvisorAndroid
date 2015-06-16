@@ -73,7 +73,7 @@ public class RecyclerViewMyAllergenAdapter
 
                 if (context != null) {
                     if(isSavedAllergenView){
-
+                        DataManager.getInstance().removeFromMyAllergens(allergen._id + "|" + allergen.name);
                     }
                     else{
                         DataManager.getInstance().saveToMyAllergens(allergen._id + "|" + allergen.name);

@@ -21,6 +21,7 @@ import pl.allergyfoodadvisor.api.pojos.Allergen;
 import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.api.services.allergens.GetAllergensService;
 import pl.allergyfoodadvisor.extras.DataManager;
+import pl.allergyfoodadvisor.extras.MyLinearLayoutManager;
 import pl.allergyfoodadvisor.extras.recyclerviews.RecyclerViewMyAllergenAdapter;
 import pl.allergyfoodadvisor.extras.searchviews.AllergenSearchViewOnQueryTextListener;
 import pl.allergyfoodadvisor.extras.BusProvider;
@@ -46,7 +47,7 @@ public class MyAllergensFragment extends Fragment {
                 this.mAllergens, false));
 
         mMyRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview_my_alrg);
-        mMyRecyclerView.setLayoutManager(new LinearLayoutManager(mMyRecyclerView.getContext()));
+        mMyRecyclerView.setLayoutManager(new MyLinearLayoutManager(mMyRecyclerView.getContext(), 1, false));
         mMyRecyclerView.setAdapter(new RecyclerViewMyAllergenAdapter(getActivity(),
                 this.mMyAllergens, true));
 
