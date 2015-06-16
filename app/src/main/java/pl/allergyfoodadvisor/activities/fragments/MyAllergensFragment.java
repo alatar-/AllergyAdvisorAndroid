@@ -61,15 +61,15 @@ public class MyAllergensFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        List<String> savedAllergens = DataManager.getInstance().getMyAllergens();
-//        for (String allergen: savedAllergens) {
-//            Allergen x = new Allergen();
-//            x._id = allergen.split("\\|")[0];
-//            x.name = allergen.split("\\|")[1];
-//
-//            mMyAllergens.add(0, x);
-//            mMyRecyclerView.getAdapter().notifyItemInserted(0);
-//        }
+        List<String> savedAllergens = DataManager.getInstance().getMyAllergens();
+        for (String allergen: savedAllergens) {
+            Allergen x = new Allergen();
+            x._id = allergen.split("\\|")[0];
+            x.name = allergen.split("\\|")[1];
+
+            mMyAllergens.add(0, x);
+            mMyRecyclerView.getAdapter().notifyItemInserted(0);
+        }
         BusProvider.getInstance().getBus().register(this);
     }
 
