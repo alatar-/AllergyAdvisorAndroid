@@ -18,27 +18,38 @@ import java.util.Random;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.api.pojos.Allergen;
+import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.api.services.allergens.GetAllergensService;
+import pl.allergyfoodadvisor.extras.DataManager;
 import pl.allergyfoodadvisor.extras.recyclerviews.RecyclerViewMyAllergenAdapter;
 import pl.allergyfoodadvisor.extras.searchviews.AllergenSearchViewOnQueryTextListener;
 import pl.allergyfoodadvisor.extras.BusProvider;
 
 public class MyAllergensFragment extends Fragment {
     private View mRootView;
-    private List<Allergen> mMyAllergens;
+    private List<Allergen> mAllergens;
     private RecyclerView mRecyclerView;
+    private List<Allergen> mMyAllergens;
+    private RecyclerView mMyRecyclerView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_my_allergens, container, false);
 
+        mAllergens = new ArrayList<Allergen>();
         mMyAllergens = new ArrayList<Allergen>();
 
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview_alrg);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
         mRecyclerView.setAdapter(new RecyclerViewMyAllergenAdapter(getActivity(),
-                this.mMyAllergens));
+                this.mAllergens, false));
+
+        mMyRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview_my_alrg);
+        mMyRecyclerView.setLayoutManager(new LinearLayoutManager(mMyRecyclerView.getContext()));
+        mMyRecyclerView.setAdapter(new RecyclerViewMyAllergenAdapter(getActivity(),
+                this.mMyAllergens, true));
+
 
         AllergenSearchViewOnQueryTextListener listener = new AllergenSearchViewOnQueryTextListener();
         ((SearchView) mRootView.findViewById(R.id.search_view_alrg)).setOnQueryTextListener(listener);
@@ -50,6 +61,15 @@ public class MyAllergensFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+//        List<String> savedAllergens = DataManager.getInstance().getMyAllergens();
+//        for (String allergen: savedAllergens) {
+//            Allergen x = new Allergen();
+//            x._id = allergen.split("\\|")[0];
+//            x.name = allergen.split("\\|")[1];
+//
+//            mMyAllergens.add(0, x);
+//            mMyRecyclerView.getAdapter().notifyItemInserted(0);
+//        }
         BusProvider.getInstance().getBus().register(this);
     }
 
@@ -73,8 +93,8 @@ public class MyAllergensFragment extends Fragment {
     @Subscribe
     public void onAPIResponse(GetAllergensService service) {
 //        List<Product> prud = getRandomSublist(Cheeses.sCheeseStrings, 30);
-        this.mMyAllergens.clear();
-        this.mMyAllergens.addAll(service.getAllergens());
+        this.mAllergens.clear();
+        this.mAllergens.addAll(service.getAllergens());
         ((RecyclerView) mRootView.findViewById(R.id.recyclerview_alrg))
                 .getAdapter().notifyDataSetChanged();
     }

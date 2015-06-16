@@ -12,6 +12,7 @@ import java.util.List;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.api.pojos.Allergen;
+import pl.allergyfoodadvisor.extras.DataManager;
 
 public class RecyclerViewAllergenAdapter
         extends RecyclerView.Adapter<RecyclerViewAllergenAdapter.ViewHolder> {
@@ -69,6 +70,7 @@ public class RecyclerViewAllergenAdapter
                 Context context = v.getContext();
 
                 if (context != null) {
+                    DataManager.getInstance().saveToMyAllergens(allergen._id + "|" + allergen.name);
                 }
             }
         });

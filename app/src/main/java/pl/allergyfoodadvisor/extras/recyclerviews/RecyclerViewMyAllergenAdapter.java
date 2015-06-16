@@ -12,6 +12,7 @@ import java.util.List;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.api.pojos.Allergen;
+import pl.allergyfoodadvisor.extras.DataManager;
 
 public class RecyclerViewMyAllergenAdapter
         extends RecyclerView.Adapter<RecyclerViewMyAllergenAdapter.ViewHolder>{
@@ -19,6 +20,7 @@ public class RecyclerViewMyAllergenAdapter
     private final TypedValue mTypedValue = new TypedValue();
     private int mBackground;
     private List<Allergen> mValues;
+    private boolean isSavedAllergenView; //there are views for already saved or olny searched allergens
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public String mBoundString;
@@ -42,10 +44,11 @@ public class RecyclerViewMyAllergenAdapter
         return mValues.get(position).name;
     }
 
-    public RecyclerViewMyAllergenAdapter(Context context, List<Allergen> items) {
+    public RecyclerViewMyAllergenAdapter(Context context, List<Allergen> items, boolean isSavedAllergenView) {
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mBackground = mTypedValue.resourceId;
         mValues = items;
+        this.isSavedAllergenView = isSavedAllergenView;
     }
 
     @Override
@@ -69,6 +72,12 @@ public class RecyclerViewMyAllergenAdapter
                 Context context = v.getContext();
 
                 if (context != null) {
+                    if(isSavedAllergenView){
+
+                    }
+                    else{
+                        DataManager.getInstance().saveToMyAllergens(allergen._id + "|" + allergen.name);
+                    }
                 }
             }
         });
