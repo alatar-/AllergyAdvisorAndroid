@@ -6,6 +6,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.List;
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.api.pojos.Allergen;
 import pl.allergyfoodadvisor.extras.DataManager;
+
+import static pl.allergyfoodadvisor.extras.CommonMethods.getResources;
 
 public class RecyclerViewMyAllergenAdapter
         extends RecyclerView.Adapter<RecyclerViewMyAllergenAdapter.ViewHolder>{
@@ -59,6 +62,20 @@ public class RecyclerViewMyAllergenAdapter
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.my_allergen_list_item, parent, false);
         view.setBackgroundResource(mBackground);
+        View imageView = view.findViewById(R.id.my_allergen_imageview);
+        View imageButton = view.findViewById(R.id.my_allergen_imagebutton);
+        View linearLayout = view.findViewById(R.id.my_allergen_linearlayout);
+
+        if(isSavedAllergenView){
+            imageView.setVisibility(View.VISIBLE);
+            imageButton.setVisibility(View.VISIBLE);
+            linearLayout.setBackground( getResources().getDrawable(R.drawable.back) );
+        }
+        else{
+            imageView.setVisibility(View.GONE);
+            imageButton.setVisibility(View.GONE);
+        }
+
         return new ViewHolder(view);
     }
 

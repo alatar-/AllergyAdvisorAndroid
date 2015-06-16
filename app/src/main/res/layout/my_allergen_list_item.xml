@@ -1,11 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="25dp">
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/my_allergen_textview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/my_allergen_linearlayout"
+        android:orientation="horizontal" android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="25dp" android:layout_marginRight="25dp">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/my_allergen_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_healing_black_24dp"
+            android:tint="@color/material_blue_grey_800"
+            />
+
+        <TextView
+            android:id="@+id/my_allergen_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/my_allergen_imagebutton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_delete_black_24dp"
+                android:tint="@color/material_blue_grey_800"
+                android:layout_gravity="right"/>
+        </FrameLayout>
+
+    </LinearLayout>
+</FrameLayout>
