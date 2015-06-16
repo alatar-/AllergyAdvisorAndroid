@@ -41,16 +41,15 @@ public class MyAllergensFragment extends Fragment {
         mAllergens = new ArrayList<Allergen>();
         mMyAllergens = new ArrayList<Allergen>();
 
-        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview_alrg);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
-        mRecyclerView.setAdapter(new RecyclerViewMyAllergenAdapter(getActivity(),
-                this.mAllergens, false));
-
         mMyRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview_my_alrg);
         mMyRecyclerView.setLayoutManager(new MyLinearLayoutManager(mMyRecyclerView.getContext(), 1, false));
         mMyRecyclerView.setAdapter(new RecyclerViewMyAllergenAdapter(getActivity(),
-                this.mMyAllergens, true));
+                this.mMyAllergens, true, null));
 
+        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview_alrg);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
+        mRecyclerView.setAdapter(new RecyclerViewMyAllergenAdapter(getActivity(),
+                this.mAllergens, false, (RecyclerViewMyAllergenAdapter) mMyRecyclerView.getAdapter()));
 
         AllergenSearchViewOnQueryTextListener listener = new AllergenSearchViewOnQueryTextListener();
         ((SearchView) mRootView.findViewById(R.id.search_view_alrg)).setOnQueryTextListener(listener);

@@ -21,6 +21,7 @@ public class RecyclerViewMyAllergenAdapter
     private int mBackground;
     private List<Allergen> mValues;
     private boolean isSavedAllergenView; //there are views for already saved or olny searched allergens
+    private RecyclerViewMyAllergenAdapter twinRecycler;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public String mBoundString;
@@ -44,11 +45,13 @@ public class RecyclerViewMyAllergenAdapter
         return mValues.get(position).name;
     }
 
-    public RecyclerViewMyAllergenAdapter(Context context, List<Allergen> items, boolean isSavedAllergenView) {
+    public RecyclerViewMyAllergenAdapter(Context context, List<Allergen> items, boolean isSavedAllergenView,
+                                         RecyclerViewMyAllergenAdapter twinRecycler) {
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mBackground = mTypedValue.resourceId;
         mValues = items;
         this.isSavedAllergenView = isSavedAllergenView;
+        this.twinRecycler = twinRecycler;
     }
 
     @Override
@@ -73,10 +76,14 @@ public class RecyclerViewMyAllergenAdapter
 
                 if (context != null) {
                     if(isSavedAllergenView){
+                        removeFromAllergenList(allergen);
                         DataManager.getInstance().removeFromMyAllergens(allergen._id + "|" + allergen.name);
+                        notifyDataSetChanged();
                     }
                     else{
+                        saveToAllergenList(allergen);
                         DataManager.getInstance().saveToMyAllergens(allergen._id + "|" + allergen.name);
+                        twinRecycler.notifyDataSetChanged();
                     }
                 }
             }
@@ -86,5 +93,15 @@ public class RecyclerViewMyAllergenAdapter
     @Override
     public int getItemCount() {
         return mValues.size();
+    }
+
+    public void removeFromAllergenList(Allergen allergen){
+        mValues.remove(allergen);
+    }
+
+    public void saveToAllergenList(Allergen allergen){
+        if(!twinRecycler.mValues.contains(allergen)){
+            twinRecycler.mValues.add(allergen);
+        }
     }
 }
