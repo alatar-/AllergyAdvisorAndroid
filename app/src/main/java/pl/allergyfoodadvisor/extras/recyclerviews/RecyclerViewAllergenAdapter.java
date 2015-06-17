@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import pl.allergyfoodadvisor.R;
 import pl.allergyfoodadvisor.api.pojos.Allergen;
@@ -24,6 +26,11 @@ public class RecyclerViewAllergenAdapter
     private final TypedValue mTypedValue = new TypedValue();
     private int mBackground;
     private List<Allergen> mValues;
+    private Map<String, Vote> mVotes = new HashMap<String, Vote>();
+
+    public enum Vote{
+        VOTE_CONTAINS, VOTE_NOT_CONTAINS, NOT_VOTE
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
@@ -75,6 +82,9 @@ public class RecyclerViewAllergenAdapter
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mBackground = mTypedValue.resourceId;
         mValues = getMyAllergens(items);
+        for( Allergen a : mValues){
+            mVotes.put(a.name, Vote.NOT_VOTE);
+        }
     }
 
     @Override
@@ -85,15 +95,11 @@ public class RecyclerViewAllergenAdapter
 
         ViewHolder vh = new ViewHolder(view, new ViewHolder.IMyViewHolderClicks(){
             public void onVoteContainsClick(View caller) {
-                TextView tv = (TextView) view.findViewById(R.id.allergen_textview_contains);
-                tv.setText( vote( (String) tv.getText() ) );
-                Log.d("ONCLICK", "VOTE CONTAINS " + (String) tv.getText());
-            };
+                vote(view, Vote.VOTE_CONTAINS);
+            }
 
             public void onVoteNotContainsClick(View caller){
-                TextView tv = (TextView) view.findViewById(R.id.allergen_textview_not_contains);
-                tv.setText( vote( (String) tv.getText() ) );
-                Log.d("ONCLICK", "VOTE NOT CONTAINS " + (String) tv.getText());
+                vote(view, Vote.VOTE_NOT_CONTAINS);
             }
         });
 
@@ -140,12 +146,61 @@ public class RecyclerViewAllergenAdapter
         return productAlrgSub;
     }
 
-    public String vote(String votes){
-        String votesr = votes.replace(".", "").replace("k", "000");
-        int iVotes = Integer.parseInt(votesr) + 1;
+    public void vote(View view, Vote vote){
+        String alrgName = (String) ((TextView) view.findViewById(R.id.allergen_textview)).getText();
+        TextView tvc = (TextView) view.findViewById(R.id.allergen_textview_contains);
+        TextView tvn = (TextView) view.findViewById(R.id.allergen_textview_not_contains);
+
+        if( vote == Vote.VOTE_CONTAINS){
+            switch(mVotes.get(alrgName)){
+                case VOTE_CONTAINS:
+                    return;
+                case VOTE_NOT_CONTAINS:
+                    tvn.setText( decrementStr((String) tvn.getText()) );
+                    tvc.setText( incrementStr((String) tvc.getText()) );
+                    break;
+                case NOT_VOTE:
+                    tvc.setText( incrementStr((String) tvc.getText()) );
+                    break;
+            }
+
+            mVotes.put(alrgName, Vote.VOTE_CONTAINS);
+        }
+        else if( vote == Vote.VOTE_NOT_CONTAINS){
+            switch(mVotes.get(alrgName)){
+                case VOTE_CONTAINS:
+                    tvc.setText( decrementStr((String) tvc.getText()) );
+                    tvn.setText( incrementStr((String) tvn.getText()) );
+                    break;
+                case VOTE_NOT_CONTAINS:
+                    return;
+                case NOT_VOTE:
+                    tvn.setText( incrementStr((String) tvn.getText()) );
+                    break;
+            }
+
+            mVotes.put(alrgName, Vote.VOTE_NOT_CONTAINS);
+        }
+    }
+
+    public String incrementStr(String s){
+        String ss = s.replace(".", "").replace("k", "000");
+        int iVotes = Integer.parseInt(ss) + 1;
 
         if(iVotes > 999){
-            return votes;
+            return s;
+        }
+        else{
+            return Integer.toString(iVotes);
+        }
+    }
+
+    public String decrementStr(String s){
+        String ss = s.replace(".", "").replace("k", "000");
+        int iVotes = Integer.parseInt(ss) - 1;
+
+        if(iVotes > 999){
+            return s;
         }
         else{
             return Integer.toString(iVotes);
