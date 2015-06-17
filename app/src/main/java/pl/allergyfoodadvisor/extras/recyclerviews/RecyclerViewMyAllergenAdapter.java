@@ -91,7 +91,8 @@ public class RecyclerViewMyAllergenAdapter
             linearLayout.setBackground( getResources().getDrawable(R.drawable.back) );
         }
         else{
-            imageView.setVisibility(View.GONE);
+            imageView.setVisibility(View.VISIBLE);
+            linearLayout.setBackground(getResources().getDrawable(R.drawable.back));
             imageButton.setVisibility(View.GONE);
         }
 
