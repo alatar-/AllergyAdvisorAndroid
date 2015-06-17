@@ -2,10 +2,13 @@ package pl.allergyfoodadvisor.extras.recyclerviews;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,21 +25,45 @@ public class RecyclerViewAllergenAdapter
     private int mBackground;
     private List<Allergen> mValues;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
         public String mBoundString;
 
         public final View mView;
         public final TextView mTextView;
+        public final View mContainsBttn;
+        public final View mNotContainsBttn;
+        public IMyViewHolderClicks mListener;
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view, IMyViewHolderClicks listener) {
             super(view);
             mView = view;
             mTextView = (TextView) view.findViewById(R.id.allergen_textview);
+            mContainsBttn = view.findViewById(R.id.imageButton1);
+            mNotContainsBttn = view.findViewById(R.id.imageButton2);
+            mListener = listener;
+            mContainsBttn.setOnClickListener(this);
+            mNotContainsBttn.setOnClickListener(this);
         }
 
         @Override
         public String toString() {
             return super.toString() + " '" + mTextView.getText();
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(v == mContainsBttn){
+                mListener.onVoteContainsClick(v);
+            }
+            else if(v == mNotContainsBttn){
+                mListener.onVoteNotContainsClick(v);
+            }
+        }
+
+        public static interface IMyViewHolderClicks {
+            public void onVoteContainsClick(View caller);
+            public void onVoteNotContainsClick(View caller);
         }
     }
 
@@ -52,10 +79,25 @@ public class RecyclerViewAllergenAdapter
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
+        final View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.allergen_list_item, parent, false);
         view.setBackgroundResource(mBackground);
-        return new ViewHolder(view);
+
+        ViewHolder vh = new ViewHolder(view, new ViewHolder.IMyViewHolderClicks(){
+            public void onVoteContainsClick(View caller) {
+                TextView tv = (TextView) view.findViewById(R.id.allergen_textview_contains);
+                tv.setText( vote( (String) tv.getText() ) );
+                Log.d("ONCLICK", "VOTE CONTAINS " + (String) tv.getText());
+            };
+
+            public void onVoteNotContainsClick(View caller){
+                TextView tv = (TextView) view.findViewById(R.id.allergen_textview_not_contains);
+                tv.setText( vote( (String) tv.getText() ) );
+                Log.d("ONCLICK", "VOTE NOT CONTAINS " + (String) tv.getText());
+            }
+        });
+
+        return vh;
     }
 
     @Override
@@ -96,5 +138,17 @@ public class RecyclerViewAllergenAdapter
         }
 
         return productAlrgSub;
+    }
+
+    public String vote(String votes){
+        String votesr = votes.replace(".", "").replace("k", "000");
+        int iVotes = Integer.parseInt(votesr) + 1;
+
+        if(iVotes > 999){
+            return votes;
+        }
+        else{
+            return Integer.toString(iVotes);
+        }
     }
 }

@@ -137,10 +137,6 @@ public class RecyclerViewMyAllergenAdapter
         return mValues.size();
     }
 
-    public void removeFromAllergenList(Allergen allergen){
-        mValues.remove(allergen);
-    }
-
     public void removeFromAllergenList(String sAlrg){
         Allergen alrgToDel = null;
         for( Allergen a : mValues){
