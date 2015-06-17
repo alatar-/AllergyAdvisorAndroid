@@ -15,9 +15,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
 import pl.allergyfoodadvisor.R;
+import pl.allergyfoodadvisor.api.pojos.Allergen;
 import pl.allergyfoodadvisor.api.pojos.Product;
 import pl.allergyfoodadvisor.extras.CommonMethods;
+import pl.allergyfoodadvisor.extras.DataManager;
 import pl.allergyfoodadvisor.extras.MyLinearLayoutManager;
 import pl.allergyfoodadvisor.extras.recyclerviews.RecyclerViewAllergenAdapter;
 

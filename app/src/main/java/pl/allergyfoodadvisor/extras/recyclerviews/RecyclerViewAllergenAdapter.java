@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pl.allergyfoodadvisor.R;
@@ -46,7 +47,7 @@ public class RecyclerViewAllergenAdapter
     public RecyclerViewAllergenAdapter(Context context, List<Allergen> items) {
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mBackground = mTypedValue.resourceId;
-        mValues = items;
+        mValues = getMyAllergens(items);
     }
 
     @Override
@@ -79,5 +80,21 @@ public class RecyclerViewAllergenAdapter
     @Override
     public int getItemCount() {
         return mValues.size();
+    }
+
+    public List<Allergen> getMyAllergens(List<Allergen> productAlrg){
+        List<String> myAlrg = DataManager.getInstance().getMyAllergens();
+        List<Allergen> productAlrgSub = new ArrayList<Allergen>();
+
+        for(Allergen a: productAlrg) {
+            for(String s: myAlrg){
+                if(s.trim().contains(a.name)){
+                    productAlrgSub.add(a);
+                    break;
+                }
+            }
+        }
+
+        return productAlrgSub;
     }
 }
