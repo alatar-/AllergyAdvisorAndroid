@@ -2,6 +2,7 @@ package pl.allergyfoodadvisor.extras.recyclerviews;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,21 +27,38 @@ public class RecyclerViewMyAllergenAdapter
     private boolean isSavedAllergenView; //there are views for already saved or olny searched allergens
     private RecyclerViewMyAllergenAdapter twinRecycler;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder
+        implements View.OnClickListener {
         public String mBoundString;
 
         public final View mView;
         public final TextView mTextView;
+        public final ImageView mImageView;
+        public IMyViewHolderClicks mListener;
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view, IMyViewHolderClicks listener) {
             super(view);
             mView = view;
             mTextView = (TextView) view.findViewById(R.id.my_allergen_textview);
+            mImageView = (ImageView) view.findViewById(R.id.my_allergen_imagebutton);
+            mListener = listener;
+            mImageView.setOnClickListener(this);
         }
 
         @Override
         public String toString() {
             return super.toString() + " '" + mTextView.getText();
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(v == mImageView){
+                mListener.onDeleteClick((ImageView) v);
+            }
+        }
+
+        public static interface IMyViewHolderClicks {
+            public void onDeleteClick(ImageView callerImage);
         }
     }
 
@@ -65,6 +83,7 @@ public class RecyclerViewMyAllergenAdapter
         View imageView = view.findViewById(R.id.my_allergen_imageview);
         View imageButton = view.findViewById(R.id.my_allergen_imagebutton);
         View linearLayout = view.findViewById(R.id.my_allergen_linearlayout);
+        final TextView textView = (TextView) view.findViewById(R.id.my_allergen_textview);
 
         if(isSavedAllergenView){
             imageView.setVisibility(View.VISIBLE);
@@ -76,7 +95,15 @@ public class RecyclerViewMyAllergenAdapter
             imageButton.setVisibility(View.GONE);
         }
 
-        return new ViewHolder(view);
+        ViewHolder vh = new ViewHolder(view, new ViewHolder.IMyViewHolderClicks(){
+            public void onDeleteClick(ImageView callerImage){
+                Log.d("ONCLICK", "To-m8-tohs");
+                removeFromAllergenList((String) textView.getText());
+                notifyDataSetChanged();
+            };
+        });
+
+        return vh;
     }
 
     @Override
@@ -93,9 +120,7 @@ public class RecyclerViewMyAllergenAdapter
 
                 if (context != null) {
                     if(isSavedAllergenView){
-                        removeFromAllergenList(allergen);
-                        DataManager.getInstance().removeFromMyAllergens(allergen._id + "|" + allergen.name);
-                        notifyDataSetChanged();
+ 
                     }
                     else{
                         saveToAllergenList(allergen);
@@ -114,6 +139,19 @@ public class RecyclerViewMyAllergenAdapter
 
     public void removeFromAllergenList(Allergen allergen){
         mValues.remove(allergen);
+    }
+
+    public void removeFromAllergenList(String sAlrg){
+        Allergen alrgToDel = null;
+        for( Allergen a : mValues){
+            if(a.name.equals(sAlrg)){
+                alrgToDel = a;
+            }
+        }
+        if(alrgToDel != null){
+            mValues.remove(alrgToDel);
+            DataManager.getInstance().removeFromMyAllergens(alrgToDel._id + "|" + alrgToDel.name);
+        }
     }
 
     public void saveToAllergenList(Allergen allergen){
